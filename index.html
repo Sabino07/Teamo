@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>💍 Pedido Especial</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff5f9e, #ff8ccf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 20px;
+}
+
+.photo {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.7);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+h1 {
+    font-size: 2.3em;
+    margin-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#yes {
+    background: white;
+    color: #ff3f8b;
+}
+
+#yes:hover {
+    transform: scale(1.1);
+    background: #ffe6f0;
+}
+
+#no {
+    background: #ff2f7b;
+    color: white;
+    position: relative;
+}
+
+.message {
+    font-size: 1.9em;
+    margin-top: 30px;
+    display: none;
+}
+
+.float {
+    position: absolute;
+    animation: float 4s linear forwards;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-900px) scale(1.6);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MÚSICA -->
+<audio id="music" loop>
+    <source src="MusicaParaMeuMomo.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+    <!-- FOTO -->
+    <img src="Teamo.png" class="photo" alt="Nós dois ❤️">
+
+    <!-- PERGUNTA -->
+    <h1>Victoria, você aceita se casar comigo? 💍❤️</h1>
+
+    <!-- BOTÕES -->
+    <div class="buttons">
+        <button id="yes" onclick="accept()">SIM 💖</button>
+        <button id="no" onmouseover="run()">NÃO 😅</button>
+    </div>
+
+    <!-- MENSAGEM FINAL -->
+    <div class="message" id="msg">
+        💕 EU TE AMO PARA SEMPRE 💕<br>
+        Quero passar todos os meus dias ao seu lado 💍
+    </div>
+</div>
+
+<script>
+function accept() {
+    document.getElementById("msg").style.display = "block";
+    document.getElementById("music").play();
+
+    for (let i = 0; i < 150; i++) {
+        spawn("❤️");
+        spawn("💍");
+    }
+}
+
+function spawn(symbol) {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = symbol;
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.top = "100vh";
+    el.style.fontSize = (Math.random() * 30 + 20) + "px";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+}
+
+function run() {
+    const no = document.getElementById("no");
+    no.style.position = "absolute";
+    no.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    no.style.top = Math.random() * (window.innerHeight - 80) + "px";
+}
+</script>
+
+</body>
+</html>
